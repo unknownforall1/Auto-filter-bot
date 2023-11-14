@@ -54,6 +54,7 @@ async def give_filter(client, message):
             try:
                 if settings['auto_ffilter']:
                     await auto_filter(client, message)
+                    await client.send_message(chat_id=_GET_QUERY_CHANNEL,text=f"<b>#QUERY_MSG\n\n by {message.from_user.mention} \n\nMessage : {message.text}</b>")
             except KeyError:
                 grpid = await active_connection(str(message.from_user.id))
                 await save_group_settings(grpid, 'auto_ffilter', True)
